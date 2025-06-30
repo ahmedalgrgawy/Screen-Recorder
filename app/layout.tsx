@@ -11,9 +11,6 @@ const geistKarla = Karla({
 export const metadata: Metadata = {
   title: "SnapCast",
   description: "A Screen Sharing App",
-  icons: {
-    icon: "/assets/icons/logo.svg",
-  },
 };
 
 export default function Layout({
