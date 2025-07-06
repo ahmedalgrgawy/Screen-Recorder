@@ -1,3 +1,5 @@
+"use client"
+import { authClient } from '@/lib/auth-client'
 import Image from 'next/image'
 import Link from 'next/link'
 import React from 'react'
@@ -53,7 +55,11 @@ const Auth = () => {
                     <p>
                         Create 7 Share your first video with <span>Green-Screen</span>
                     </p>
-                    <button>
+                    <button onClick={async () => {
+                        return await authClient.signIn.social({
+                            provider: "google",
+                        });
+                    }}>
                         <Image src="/assets/icons/google.svg" alt="Google Logo" width={22} height={22} />
                         <span>
                             Sign in with Google

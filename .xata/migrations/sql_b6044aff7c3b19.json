@@ -1,0 +1,18 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_b6044aff7c3b19",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE TABLE account (id text PRIMARY KEY NOT NULL, account_id text NOT NULL, provider_id text NOT NULL, user_id text NOT NULL, access_token text, refresh_token text, id_token text, access_token_expires_at timestamp, refresh_token_expires_at timestamp, scope text, password text, created_at timestamp NOT NULL, updated_at timestamp NOT NULL)"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_b6044aff7c3b19",
+  "parent": "mig_d1i1deido80pli9qv36g",
+  "schema": "public",
+  "startedAt": "2025-07-06T15:03:20.506802Z"
+}

@@ -1,0 +1,6 @@
+{
+  "databaseURL": "https://Ahmed-Algrgawy-s-workspace-nm1esn.us-east-1.xata.sh/db/green-screen",
+  "codegen": {
+    "output": "src/xata.ts"
+  }
+}

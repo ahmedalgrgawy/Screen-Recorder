@@ -9,7 +9,7 @@ const geistKarla = Karla({
 });
 
 export const metadata: Metadata = {
-  title: "SnapCast",
+  title: "Green-Screen",
   description: "A Screen Sharing App",
 };
 
