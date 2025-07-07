@@ -9,7 +9,7 @@ const DatabaseClient = buildClient();
 
 const defaultOptions = {
     databaseURL:
-        "https://Ahmed-Algrgawy-s-workspace-nm1esn.us-east-1.xata.sh/db/green-screen:main",
+        "https://Ahmed-Algrgawy-s-workspace-nm1esn.us-east-1.xata.sh/db/green-screen",
     apiKey: process.env.XATA_API_KEY!,
     branch: "main",
 };
