@@ -1,6 +1,8 @@
 "use client"
 import FileInput from "@/components/FileInput"
 import FormField from "@/components/FormField"
+import { MAX_THUMBNAIL_SIZE, MAX_VIDEO_SIZE } from "@/constants";
+import { useFileInput } from "@/lib/hooks/useFileInput";
 import { ChangeEvent, useState } from "react";
 
 const Page = () => {
@@ -12,7 +14,7 @@ const Page = () => {
         visibility: "public",
     })
 
-    const handleChange = async (e: ChangeEvent) => {
+    const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
         setFormData((prev) => ({
             ...prev,
@@ -20,8 +22,8 @@ const Page = () => {
         }));
     }
 
-    const video = {}
-    const thumbnail = {}
+    const video = useFileInput(MAX_VIDEO_SIZE)
+    const thumbnail = useFileInput(MAX_THUMBNAIL_SIZE);
 
     return (
         <div className="wrapper-md upload-page">
