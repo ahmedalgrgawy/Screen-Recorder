@@ -1,0 +1,18 @@
+{
+  "done": true,
+  "migration": {
+    "name": "mig_d1mkecpr27un0qigpejg",
+    "operations": [
+      {
+        "drop_table": {
+          "name": "videos"
+        }
+      }
+    ]
+  },
+  "migrationType": "pgroll",
+  "name": "mig_d1mkecpr27un0qigpejg",
+  "parent": "mig_d1mke83j0aqdfvuvbk00",
+  "schema": "public",
+  "startedAt": "2025-07-08T16:28:36.610775Z"
+}

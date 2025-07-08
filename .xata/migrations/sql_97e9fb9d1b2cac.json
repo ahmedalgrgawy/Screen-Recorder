@@ -1,0 +1,17 @@
+{
+  "done": true,
+  "migration": {
+    "name": "sql_97e9fb9d1b2cac",
+    "operations": [
+      {
+        "sql": {
+          "up": "CREATE SCHEMA IF NOT EXISTS bb_g7lokufdld08n17scc1g8u41vs_nm1esn_drizzle"
+        }
+      }
+    ]
+  },
+  "migrationType": "inferred",
+  "name": "sql_97e9fb9d1b2cac",
+  "schema": "drizzle",
+  "startedAt": "2025-07-08T15:51:45.801632Z"
+}

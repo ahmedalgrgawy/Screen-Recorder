@@ -80,4 +80,5 @@ export const schema = {
     session,
     account,
     verification,
+    videos
 };
