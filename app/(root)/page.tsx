@@ -1,6 +1,6 @@
 import EmptyState from '@/components/EmptyState'
-import Header from '@/components/Header'
 import Pagination from '@/components/Pagination'
+import SharedHeader from '@/components/SharedHeader'
 import VideoCard from '@/components/VideoCard'
 import { getAllVideos } from '@/lib/actions/video'
 import React from 'react'
@@ -13,7 +13,7 @@ const Page = async ({ searchParams }: SearchParams) => {
 
   return (
     <main className="wrapper page">
-      <Header title='All Videos' subHeader='Public Library' />
+      <SharedHeader title='All Videos' subHeader='Public Library' />
 
       {videos?.length > 0 ? (
         <section className='video-grid'>
