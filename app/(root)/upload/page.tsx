@@ -35,16 +35,57 @@ const Page = () => {
     })
     const [videoDuration, setVideoDuration] = useState(0);
 
-    const handleChange = async (e: ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setFormData((prev) => ({
-            ...prev,
-            [name]: value
-        }));
-    }
-
     const video = useFileInput(MAX_VIDEO_SIZE)
     const thumbnail = useFileInput(MAX_THUMBNAIL_SIZE);
+
+    useEffect(() => {
+        if (video.duration !== null || 0) {
+            setVideoDuration(video.duration)
+        }
+    }, [video.duration])
+
+    useEffect(() => {
+        const checkForRecordedVideo = async () => {
+            try {
+                const stored = sessionStorage.getItem("recordedVideo");
+                if (!stored) return;
+
+                const { url, name, type, duration } = JSON.parse(stored);
+                const blob = await fetch(url).then((res) => res.blob());
+                const file = new File([blob], name, { type, lastModified: Date.now() });
+
+                if (video.inputRef.current) {
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(file);
+                    video.inputRef.current.files = dataTransfer.files;
+
+                    const event = new Event("change", { bubbles: true });
+                    video.inputRef.current.dispatchEvent(event);
+
+                    video.handleFileChange({
+                        target: { files: dataTransfer.files },
+                    } as ChangeEvent<HTMLInputElement>);
+                }
+
+                if (duration) setVideoDuration(duration);
+
+                sessionStorage.removeItem("recordedVideo");
+                URL.revokeObjectURL(url);
+            } catch (err) {
+                console.error("Error loading recorded video:", err);
+            }
+        };
+
+        checkForRecordedVideo();
+    }, [video]);
+
+
+    const handleInputChange = (
+        e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
+    ) => {
+        const { name, value } = e.target;
+        setFormData((prev) => ({ ...prev, [name]: value }));
+    };
 
     const handleUpload = async (e: FormEvent) => {
         e.preventDefault();
@@ -106,12 +147,6 @@ const Page = () => {
         }
     }
 
-    useEffect(() => {
-        if (video.duration !== null || 0) {
-            setVideoDuration(video.duration)
-        }
-    }, [video.duration])
-
     return (
         <div className="wrapper-md upload-page">
             <h1>
@@ -125,7 +160,7 @@ const Page = () => {
                     id="title"
                     label="title"
                     value={formData.title}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     placeholder="Enter title"
                 />
                 <FormField
@@ -133,7 +168,7 @@ const Page = () => {
                     label="Description"
                     value={formData.description}
                     as="textarea"
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     placeholder="Enter Description"
                 />
 
@@ -170,7 +205,7 @@ const Page = () => {
                         { value: "public", label: "Public" },
                         { value: "private", label: "Private" },
                     ]}
-                    onChange={handleChange}
+                    onChange={handleInputChange}
                     placeholder="Enter Visibility"
                 />
 
